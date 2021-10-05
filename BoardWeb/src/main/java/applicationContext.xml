@@ -9,8 +9,9 @@
 	<!-- 클래스 하나 당 하나의 <bean> 설정이 필요하다. 
 	중요한 것은 class 속성값. 여기에 패키지 경로가 포함된 전체 클래스 경로를 지정해야 한다. -->
 	
-	<bean id="tv" class="polymorphism.SamsungTV" scope="singleton"/>
-	
+	<bean id="tv" class="polymorphism.SamsungTV">
+		<constructor-arg ref="sony"></constructor-arg> <!-- 생성자 인젝션 태그 -->
+	</bean>
 
-	
+	<bean id="sony" class="polymorphism.SonySpeaker"></bean>
 </beans>
