@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 스프링 설정 파일 -->
+
+	<bean id="tv" class="polymorphism.SamsungTV"/>
+	<!-- 클래스 하나 당 하나의 <bean> 설정이 필요하다. 
+	중요한 것은 class 속성값. 여기에 패키지 경로가 포함된 전체 클래스 경로를 지정해야 한다. -->
+	
+
+	
+</beans>

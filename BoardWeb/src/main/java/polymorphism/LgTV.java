@@ -1,6 +1,6 @@
 package polymorphism;
 
-public class LgTV {
+public class LgTV implements TV {
 
 // 다형성을 활용하지 않은 코드
 //	public void turnOn() {
@@ -22,7 +22,7 @@ public class LgTV {
 	// 다형성을 활용한 코드(인터페이스 메소드 재정의 필요)
 
 	public void powerOn() {
-		System.out.println("LgV---전원 켠다.");
+		System.out.println("LgTV---전원 켠다.");
 	}
 
 	public void powerOff() {
