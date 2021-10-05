@@ -4,9 +4,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class TVUser {
-	
-	public static void main(String[] args)
-	{
+
+	public static void main(String[] args) {
 		/*
 		SamsungTV tv = new SamsungTV();
 		
@@ -15,7 +14,7 @@ public class TVUser {
 		tv.volumeDown();
 		tv.powerOff();
 		*/
-		
+
 		/*
 		 실행 결과
 		SamsungTV---전원 켠다.
@@ -23,7 +22,7 @@ public class TVUser {
 		SamsungTV---소리 내린다.
 		SamsungTV---전원 끈다.
 		*/
-		
+
 		/*
 		LgTV tv = new LgTV();
 		
@@ -32,19 +31,17 @@ public class TVUser {
 		tv.SoundDown();
 		tv.turnOff();
 		*/
-		
+
 		/*
 		LgTV---전원 켠다.
 		LgTV---소리 올린다.
 		LgTV---소리 내린다.
 		LgTV---전원 끈다.
 		*/
-		
+
 		// 같은 기능임에도 TV 별로 메소드 이름이 달라서 TVUser 대부분을 수정해야 한다.
-		
-		
-		
-		// 다형성 인터페이스 활용 후.. 
+
+		// 다형성 인터페이스 활용 후..
 		/*
 		TV tv = new SamsungTV(); // 참조하는 객체만 변경하면 삼성-lg 변경이 용이하다.
 		tv.powerOn();
@@ -52,8 +49,7 @@ public class TVUser {
 		tv.volumeUp();
 		tv.volumeDown();
 		*/
-		
-		
+
 		/*
 		
 		// 디자인 패턴 활용 후..
@@ -72,27 +68,42 @@ public class TVUser {
 		tv.volumeDown();
 		
 		*/
-		
+
 		// ------- 9/24 (금)
 		// 스프링 컨테이너 구동 및 테스트
-		// TV 객체를 테스트 하는 클라이언트 
+		// TV 객체를 테스트 하는 클라이언트
 		// 환경설정 파일인 application Context.xml을 로딩하여 스프링 컨테이너 중 하나인 Generic~~을 구동
-		
-		// 1. Spring 컨테이너를 구동한다.
-	    AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 
-	    /* 구동 결과 
-	     INFO : org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
-	     INFO : org.springframework.context.support.GenericXmlApplicationContext - Refreshing org.springframework.context.support.GenericXmlApplicationContext@7fad8c79: startup date [Fri Sep 24 16:40:21 KST 2021]; root of context hierarchy
-	     */
-	    
-	    // 2. Spring 컨테이너로부터 필요한 객체를 요청(Lookup)한다.
-	    TV tv = (TV)factory.getBean("tv");
+		// 1. Spring 컨테이너를 구동한다.
+		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+
+		/* 구동 결과 
+		 INFO : org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+		 INFO : org.springframework.context.support.GenericXmlApplicationContext - Refreshing org.springframework.context.support.GenericXmlApplicationContext@7fad8c79: startup date [Fri Sep 24 16:40:21 KST 2021]; root of context hierarchy
+		 */
+
+		// 2. Spring 컨테이너로부터 필요한 객체를 요청(Lookup)한다.
+		TV tv = (TV) factory.getBean("tv");
+
+		// 10/5 (화) scope="singleton" 테스트
+		TV tv1 = (TV) factory.getBean("tv");
+		TV tv2 = (TV) factory.getBean("tv");
+		TV tv3 = (TV) factory.getBean("tv");
+
+		/* 싱글톤 결과 : 객체 한 번만 생성
+		INFO : org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+		INFO : org.springframework.context.support.GenericXmlApplicationContext - Refreshing org.springframework.context.support.GenericXmlApplicationContext@41975e01: startup date [Tue Oct 05 14:26:56 KST 2021]; root of context hierarchy
+		===> SamsungTV 객체 생성
+		INFO : org.springframework.context.support.GenericXmlApplicationContext - Closing org.springframework.context.support.GenericXmlApplicationContext@41975e01: startup date [Tue Oct 05 14:26:56 KST 2021]; root of context hierarchy
+		 */
+		
+		/*
 		tv.powerOn();
 		tv.powerOff();
 		tv.volumeUp();
 		tv.volumeDown();
-		
+		*/
+
 		// 3. Spring 컨테이너를 종료한다.
 		factory.close();
 

@@ -1,26 +1,16 @@
 package polymorphism;
 
-// 다형성 실습
-
 public class SamsungTV implements TV {
 
-// 다형성을 활용하지 않은 코드	
-//	public void powerOn() {
-//		System.out.println("SamsungTV---전원 켠다.");
-//	}
-//	
-//	public void powerOff() {
-//		System.out.println("SamsungTV---전원 끈다.");
-//	}
-//	
-//	public void volumeUp() {
-//		System.out.println("SamsungTV---소리 올린다.");
-//	}
-//	
-//	public void volumeDown() {
-//		System.out.println("SamsungTV---소리 내린다.");
-//	}
-	
+	// 10/5(화) bean 엘리먼트 속성
+	// init-method 속성
+	 public void initMethod() {
+		 System.out.println("객체 초화 작업 처리..");
+	 }
+	 
+	 public void destroyMethod() {
+		 System.out.println("객체 삭제 전에 처리할 로직 처리..");
+	 }
 	
     // 구동된 컨테이너로부터 SamsungTV 객체를 얻어내 보자.
     // SamsungTV 객체가 언제 생성되는지 확인하기 위해서 기본 생성자를 추가
